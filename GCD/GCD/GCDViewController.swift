@@ -69,15 +69,24 @@ class GCDViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    typealias completionClosure = (UIImage) -> ()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func withImage(_ image: UIImage, completion : completionClosure) {
+    
+        DispatchQueue.global(qos: .userInitiated).async {
+            do{
+                let data = try Data(contentsOf: self.url)
+                let img = UIImage(data: data)!
+                
+                // Finished. Execute completion function
+                DispatchQueue.main.async {
+                    completion(img)
+                }
+                
+            } catch {
+                print("Se fue a la puta")
+            }
+        }
     }
-    */
 
 }
