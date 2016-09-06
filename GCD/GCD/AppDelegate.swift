@@ -16,7 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Create window
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // Create View Controller
+        let mainVC = GCDViewController(nibName: nil, bundle: nil)
+        
+        // Put root VC
+        window?.rootViewController = mainVC
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
