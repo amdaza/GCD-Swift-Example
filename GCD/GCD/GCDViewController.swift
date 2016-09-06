@@ -10,6 +10,20 @@ import UIKit
 
 class GCDViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBAction func syncDownload(_ sender: AnyObject) {
+    }
+    
+    @IBAction func asyncDownload(_ sender: AnyObject) {
+    }
+    
+    @IBAction func actorDownload(_ sender: AnyObject) {
+    }
+    
+    @IBAction func updateAlpha(_ sender: UISlider) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
