@@ -22,6 +22,13 @@ class GCDViewController: UIViewController {
     }
     
     @IBAction func updateAlpha(_ sender: UISlider) {
+        
+        // Doesn't work, float != CGFloat
+        //imageView.alpha = sender.value
+        
+        let value = CGFloat(sender.value)
+        
+        imageView.alpha = value
     }
     
     override func viewDidLoad() {
