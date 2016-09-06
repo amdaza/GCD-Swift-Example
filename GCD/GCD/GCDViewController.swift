@@ -27,6 +27,7 @@ class GCDViewController: UIViewController {
     }
     
     @IBAction func asyncDownload(_ sender: AnyObject) {
+        /*
         
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -42,6 +43,11 @@ class GCDViewController: UIViewController {
             } catch {
                 print("Se fue a la puta")
             }
+        }
+ */
+        
+        withURL(url) { (img : UIImage) in
+            self.imageView.image = img
         }
     }
     
@@ -71,11 +77,11 @@ class GCDViewController: UIViewController {
     
     typealias completionClosure = (UIImage) -> ()
 
-    func withImage(_ image: UIImage, completion : completionClosure) {
+    func withURL(_ url: URL, completion : completionClosure) {
     
         DispatchQueue.global(qos: .userInitiated).async {
             do{
-                let data = try Data(contentsOf: self.url)
+                let data = try Data(contentsOf: url)
                 let img = UIImage(data: data)!
                 
                 // Finished. Execute completion function
