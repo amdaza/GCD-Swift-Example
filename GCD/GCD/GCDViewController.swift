@@ -9,13 +9,40 @@
 import UIKit
 
 class GCDViewController: UIViewController {
+    
+    let url = URL(string: "https://microcambiosdeladensidaddelaire.files.wordpress.com/2015/05/bpctmue.jpg")!
 
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func syncDownload(_ sender: AnyObject) {
+        
+        var data : Data
+        do {
+            try data = Data(contentsOf: url)
+            imageView.image = UIImage(data: data)
+            
+        } catch {
+            print("Se fue a la puta")
+        }
     }
     
     @IBAction func asyncDownload(_ sender: AnyObject) {
+        
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+           
+            var data : Data
+            do {
+                try data = Data(contentsOf: self.url)
+                    
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data)
+                }
+                    
+            } catch {
+                print("Se fue a la puta")
+            }
+        }
     }
     
     @IBAction func actorDownload(_ sender: AnyObject) {
